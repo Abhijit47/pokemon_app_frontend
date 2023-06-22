@@ -2,7 +2,11 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { MdAccountCircle, MdOutlineAlternateEmail, MdLockPerson } from "react-icons/md";
+import {
+  MdAccountCircle,
+  MdOutlineAlternateEmail,
+  MdLockPerson,
+} from 'react-icons/md';
 
 const bgColor = {
   backgroundColor: '#fd7e14',
@@ -25,39 +29,38 @@ const Signup = (props) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(process.env.REACT_APP_SIGN_UP, {
+      const res = await axios.post(process.env.REACT_APP_SIGN_UP_URL, {
         name: signUpDetails.name,
         email: signUpDetails.email,
         password: signUpDetails.password,
       });
       console.log(res.data);
       toast('Account created successfully', {
-        type: "success",
-        position: "bottom-right",
+        type: 'success',
+        position: 'bottom-right',
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: 'dark',
       });
       navigate('/login');
-
     } catch (err) {
       // eslint-disable-next-line
       const { error } = err.response.data;
       const { status } = err.response;
       toast(`{Something went wrong ${status}}`, {
-        type: "error",
-        position: "top-right",
+        type: 'error',
+        position: 'top-right',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: 'dark',
       });
     }
   };
@@ -69,12 +72,13 @@ const Signup = (props) => {
 
   return (
     <div className='container vstack align-items-center mt-3 mb-3'>
-      <h3>Create your own Pokemon <span className='fs-5'>👇</span></h3>
+      <h3>
+        Create your own Pokemon <span className='fs-5'>👇</span>
+      </h3>
       <form
         onSubmit={handleSubmit}
         className='bg-gradient p-3 rounded-3 shadow-sm row col-11 col-lg-6'
         style={bgColor}>
-
         <div className='mb-3'>
           <label htmlFor='name' className='form-label'>
             Full name

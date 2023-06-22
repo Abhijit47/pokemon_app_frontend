@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { MdOutlineAlternateEmail, MdLockPerson } from "react-icons/md";
+import { MdOutlineAlternateEmail, MdLockPerson } from 'react-icons/md';
 
 const bgColor = {
   backgroundColor: '#fd7e14',
@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(process.env.REACT_APP_LOGIN, {
+      const res = await axios.post(process.env.REACT_APP_LOGIN_URL, {
         email: loginDetails.email,
         password: loginDetails.password,
       });
@@ -28,29 +28,29 @@ const Login = () => {
       if (res.data.success) {
         localStorage.setItem('token', res.data.token);
         toast('Login Success!', {
-          type: "success",
-          position: "bottom-right",
+          type: 'success',
+          position: 'bottom-right',
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: 'dark',
         });
         navigate('/dashboard');
       }
     } catch (error) {
       toast(error.response.data.message, {
-        type: "error",
-        position: "top-right",
+        type: 'error',
+        position: 'top-right',
         autoClose: 4000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: 'dark',
       });
     }
   };
@@ -66,7 +66,6 @@ const Login = () => {
         onSubmit={handleSubmit}
         className='bg-gradient p-4 rounded-2 shadow-sm row col-11 col-lg-6'
         style={bgColor}>
-
         {/* <div className='mb-3'>
           <label htmlFor='email' className='form-label'>
             Email address
@@ -101,8 +100,8 @@ const Login = () => {
         <label htmlFor='email' className='form-label'>
           Email address
         </label>
-        <div className="input-group mb-1">
-          <span className="input-group-text" id="basic-addon1">
+        <div className='input-group mb-1'>
+          <span className='input-group-text' id='basic-addon1'>
             <MdOutlineAlternateEmail />
           </span>
           <input
@@ -122,8 +121,8 @@ const Login = () => {
         <label htmlFor='password' className='form-label'>
           Password
         </label>
-        <div className="input-group mb-3">
-          <span className="input-group-text" id="basic-addon1">
+        <div className='input-group mb-3'>
+          <span className='input-group-text' id='basic-addon1'>
             <MdLockPerson />
           </span>
           <input
